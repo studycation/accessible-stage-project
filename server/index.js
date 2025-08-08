@@ -1,15 +1,24 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
 const app = express();
-const PORT = 4000;
 
+dotenv.config();
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/hello', (req, res) => {
-  res.json({ message: '안녕하세요 from Node.js' });
+
+const performanceRouter = require('./routes/performance');
+app.use('/api/performance', performanceRouter);
+
+
+// 예시 라우터
+app.get('/', (req, res) => {
+  res.send('공연시설 API 서버입니다');
 });
 
+// 서버 시작
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`서버 실행 중: http://localhost:${PORT}`);
 });
