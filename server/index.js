@@ -11,6 +11,9 @@ app.use(express.json());
 const performanceRouter = require('./routes/performance');
 app.use('/api/performance', performanceRouter);
 
+const reviewRouter = require('./routes/review');
+app.use('/api/review', reviewRouter);
+
 
 // 예시 라우터
 app.get('/', (req, res) => {
